@@ -1,0 +1,121 @@
+﻿
+# 🧬 Comprehensive Molecular Biology & Biotechnology Bench Repository
+> **مرجع جامع، ساختاریافته و کاربردی (Bench-ready) پروتکل‌های مولکولی، بیوشیمی بافرها، عیب‌یابی کارگاهی و محاسبات آزمایشگاهی**
+
+این مخزن آموزش مولکولی به‌گونه‌ای طراحی شده است که پوشش کاملی از پایه‌ای‌ترین روش‌های آزمایشگاهی (Wet-lab) تا پیشرفته‌ترین تکنیک‌های نسل جدید (NGS و CRISPR) ارائه دهد. تمامی پروتکل‌ها و راهنماهای موجود در این پروژه، بر اساس استانداردهای بین‌المللی (مانند *Cold Spring Harbor Protocols* و *Current Protocols in Molecular Biology*) و با نگاهی کاربردیبرای بنچ آزمایشگاه تدوین شده‌اند.
+
+---
+
+## 🎯 اهداف و ویژگی‌های برجسته مخزن
+
+1. **ارائه بیوشیمی دقیق واکنش‌ها:** توضیح نقش تک‌تک اجزای بافرها، دترجنت‌ها، حلال‌ها و آنزیم‌ها به جای ارایه روش کار های ناقص.
+2. **پوشش روش‌های سنتی (In-house) و کیت‌های تجاری:** مقایسه دقیق روش‌های دستی (فنل-کلروفرم، CTAB، بویلینگ) با کیت‌های مبتنی بر ستون‌های سیلیکا (Spin Columns) و مهره‌های مگنتی (Magnetic Beads).
+3. **ارزیابی چندلایه خلوص و کیفیت:** بررسی تخصصی متدهای سنجش کمی و کیفی (NanoDrop vs. Qubit, Bioanalyzer RIN, Agarose Gel).
+4. **رویکرد سناریومحور برای عیب‌یابی (Troubleshooting):** جدول‌بندی علت‌های بیوشیمیایی خطاهای رایج بنچ و ارائه راهکارهای نجات (Rescue Actions).
+5. **ارزیابی و سنجش دانش تکنیکی:** ارائه مسائل محاسباتی واقعی (C1V1، فرمول‌نویسی مسترمیکس، رقت‌سازی و بازدهی) به همراه پاسخ‌های گام‌به‌گام.
+
+---
+
+## 📂 ساختار چهارگانه فایل‌ها در هر سرفصل
+
+هر یک از ۱۷ پوشه موجود در این مخزن، شامل **۴ فایل استاندارد و یکپارچه** با فرمت Markdown است:
+
+01_Folder_Name/
+├── 01_Protocol.md # روش کار گام‌به‌گام، بیوشیمی بافرها، پارامترهای سانتریفیوژ و نکات کارگاهی
+├── 02_Assessment.md # مسائل محاسباتی کارگاهی، سناریوهای عیب‌یابی روی ژل/نانودراپ و سوالات تکنیکی
+├── 03_Answers.md # پاسخ‌نامه تشریحی، محاسبات خط‌به‌خط و توضیحات کامل سناریوها
+└── 04_Standard_Tables.md # جداول مرجع سریع (خلوص، فرمولاسیون بافرها، مسترمیکس‌ها و خطایابی)
+
+---
+
+## 🗺 نقشه‌راه و سرفصل‌های ۱۷‌گانه آموزشی
+
+این دوره آموزشی در ۶ فاز منطقی طبقه‌بندی شده است:
+
+### فاز ۱: استخراج و جداسازی اسیدهای نوکلئیک و پروتئین‌ها
+* **`01_DNA_Extraction`:** استخراج $gDNA$ و پلاسمید از باکتری‌ها (گرم مثبت/منفی)، گیاهان، قارچ‌ها، خون و بافت. بررسی روش‌های Boiling، CTAB، Phenol-Chloroform و کیت‌های ستونی.
+* **`02_RNA_Extraction_and_Handling`:** اصول استخراج RNA سالم، کار با TRIzol/Phenol-Guanidinium، تکنیک‌های ایجاد محیط RNase-free، سنجش کیفیت با Qubit و تعیین شاخص RIN با الکتروفورز مویین.
+* **`03_Protein_Extraction_and_Quantification`:** تهیه عصاره پروتئینی کل (Total Protein)، بافرهای لیز (RIPA, NP-40)، مهارکننده‌های پروتئاز و سنجش کمی با روش‌های Bradford، BCA و UV-absorbance.
+
+### فاز ۲: روش‌های تکثیر اسیدهای نوکلئیک (Amplification)
+* **`04_Standard_PCR`:** بیوشیمی سنتز DNA، طراحی و محاسبات پرایمر، آنزیم‌های Taq و High-fidelity، محاسبات مسترمیکس و تنظیم برنامه‌های حرارتی.
+* **`05_Multiplex_and_Gradient_PCR`:** بهینه‌سازی دما با گرادینت PCR، تکثیر هم‌زمان چند ژن (Multiplex)، حل چالش‌های پرایمر-دایمر و مهارکننده‌ها.
+* **`06_Isothermal_Amplification_LAMP`:** روش‌های تکثیر هم‌دما بدون نیاز به ترموسایکلر (LAMP و RPA)، طراحی ۶ پرایمر اختصاصی و کاربرد در تست‌های سریع تشخیصی (Point-of-Care).
+* **`07_RealTime_qPCR`:** اصول سنجش کمی بیان ژن با SYBR Green و TaqMan Probes، آنالیز منحنی ذوب (Melt Curve)، محاسبه بازدهی (Efficiency) و محاسبات آماری $2^{-\Delta\Delta C_T}$.
+
+### فاز ۳: روش‌های جداسازی، آنالیز ساختاری و بلاتینگ
+* **`08_Agarose_Gel_Electرفورز`:** آماده‌سازی ژل آگارز، بافرهای TAE و TBE، رنگ‌های ایمن (GelRed, SYBR Safe)، بازخوانی لکه‌ها و آنالیز تصویری با Gel Doc.
+* **`09_Southern_and_Northern_Blotting`:** انتقال $DNA$ و $RNA$ به غشاهای نایلونی/نیتروسلولز، نشان‌دارسازی پروب‌های اختصاصی (رادیواکتیو و فلورسنت) و هایبریداسیون.
+* **`10_Western_Blotting`:** جداسازی پروتئین‌ها با SDS-PAGE، انتقال به غشای PVDF، بلوک کردن، پروب‌گذاری با آنتی‌بادی‌های اولیه و ثانویه و آشکارسازی لومینسنت (ECL).
+
+### فاز ۴: تکنیک‌های آرایه و تعیین توالی
+* **`11_DNA_Microarray_Technology`:** اصول آرایه‌های DNA، آماده‌سازی پروب‌ها، هایبریداسیون چیپ و آنالیز اولیه داده‌های بیان ژن.
+* **`12_Sanger_Sequencing`:** تعیین توالی با دی‌دیوکسینوکلئوتیدها (ddNTPs)، الکتروفورز مویین، بازخوانی الکتروفروگرام، شناسایی کروماتوگرام‌های دوگانه (Heterozygosity) و QC توالی‌ها.
+* **`13_Next_Generation_Sequencing_NGS`:** ساخت کتابخانه (Library Prep)، آدپتورها و ایندکس‌گذاری، پلتفرم‌های Illumina (Short-read) در برابر Nanopore/PacBio (Long-read) و ارزیابی کیفیت داده‌های خام (FastQC).
+
+### فاز ۵: مهندسی ژنتیک، کلونینگ
+* **`14_Prokaryotic_Cloning_and_Plasmids`:** کلونینگ با آنزیم‌های برش (Restriction Enzymes)، لیگاسیون، آماده‌سازی سلول‌های ذی‌صلاح (Competent cells)، ترانسفورماسیون به روش شوک حرارتی و الکتروپوریشن، غربالگری کلونی‌ها (Blue-White screening) و کیورینگ پلاسمید.
+* **`15_Eukaryotic_Cloning_and_Vectors`:** ناقلین بیانی یوکاریوتی، سیستم‌های لنتی‌ویروسی و آدنوفیروسی، روش‌های ترانسفکشن سلول‌های پستانداران (Lipofectamine, Calcium Phosphate) و انتخاب با آنتی‌بیوتیک‌ها (Puromycin, G418).
+
+### فاز ۶: تایپینگ اپیدمیولوژیک و تکنولوژی‌های نوپدید
+* **`16_Molecular_Typing_PFGE_MLST_ERIC`:** روش‌های تایپینگ مولکولی برای مطالعات اپیدمیولوژی بیماری‌های عفونی و سویه‌شناسی شامل PFGE, MLST, ERIC-PCR و Rep-PCR.
+* **`17_CRISPR_Cas_Editing_and_Diagnostics`:** اصول سیستم‌های CRISPR-Cas9/Cas12/Cas13 برای ویرایش ژنوم و ابزارهای جدید تشخیصی مبتنی بر کریپسر (پلتفرم‌های SHERLOCK و DETECTR).
+
+---
+
+## 🛠 اسکریپت بش جهت ایجاد اتوماتیک ساختار مخزن
+
+برای ساخت تمام پوشه‌ها و فایل‌های استاندارد در محیط لینوکس یا سرور، اسکریپت زیر را اجرا کنید:
+
+```bash
+#!/bin/bash
+# Script to generate the complete directory structure and template files
+
+BASE_DIR="/data/Molecular_Methods"
+
+folders=(
+  "01_DNA_Extraction"
+  "02_RNA_Extraction_and_Handling"
+  "03_Protein_Extraction_and_Quantification"
+  "04_Standard_PCR"
+  "05_Multiplex_and_Gradient_PCR"
+  "06_Isothermal_Amplification_LAMP"
+  "07_RealTime_qPCR"
+  "08_Agarose_Gel_Electrophoresis"
+  "09_Southern_and_Northern_Blotting"
+  "10_Western_Blotting"
+  "11_DNA_Microarray_Technology"
+  "12_Sanger_Sequencing"
+  "13_Next_Generation_Sequencing_NGS"
+  "14_Prokaryotic_Cloning_and_Plasmids"
+  "15_Eukaryotic_Cloning_and_Vectors"
+  "16_Molecular_Typing_PFGE_MLST_ERIC"
+  "17_CRISPR_Cas_Editing_and_Diagnostics"
+)
+
+echo "Creating directory structure in ${BASE_DIR}..."
+
+for folder in "${folders[@]}"; do
+  DIR_PATH="${BASE_DIR}/${folder}"
+  mkdir -p "${DIR_PATH}"
+  
+  touch "${DIR_PATH}/01_Protocol.md"
+  touch "${DIR_PATH}/02_Assessment.md"
+  touch "${DIR_PATH}/03_Answers.md"
+  touch "${DIR_PATH}/04_Standard_Tables.md"
+  
+  echo "Created: ${folder}"
+done
+
+echo "Structure generated successfully!"
+📋 قانون طلاکارانه بنچ (Golden Rules for the Bench)
+    1. کیفیت ورودی = کیفیت خروجی (Garbage In, Garbage Out): خلوص اسیدهای نوکلئیک یا پروتئین ورودی، تعیین‌کننده موفقیت ۱۰۰٪ واکنش‌های پایینی (Downstream) مانند PCR, NGS یا Western Blot است.
+    2. بررسی اعتبار بافرها پیش از شروع: همواره تاریخ انقضا، pH دقیق و عدم وجود رسوب در بافرها را چک کنید (به‌خصوص بافرهای SDS و CTAB که در سرما رسوب می‌کنند).
+    3. مراقبت در برابر آلودگی‌های متقاطع (Cross-contamination): از سرسمپلرهای فیلتردار (Filter tips) استفاده کنید و ناحیه آماده‌سازی مسترمیکس را از ناحیه الکتروفورز و محصول PCR کاملاً جدا نگه دارید.
+    4. ثبت تمام جزئیات در دفترچه آزمایشگاه: تغییرات جزئی در دما، دور سانتریفیوژ یا زمان انکوباسیون را دقیقاً ثبت کنید تا قابلیت تکرارپذیری (Reproducibility) حفظ شود.
+🤝 روش روش مشارکت و گسترش مخزن
+اگر قصد دارید پروتکل جدیدی اضافه کنید یا عیب‌یابی‌های جدیدی ارایه دهید:
+    1. ساختار ۴ فایلی هر پوشه را  رعایت کنید.
+    2. فرمول‌ها و معادلات شیمیایی/ریاضی را با استاندارد LaTeX بنویسید (مانند $A_{260}/A_{280}$).
+    3. از ادبیات شفاف، علمی و   کاربردی و اجرایی استفاده کنید.
+
