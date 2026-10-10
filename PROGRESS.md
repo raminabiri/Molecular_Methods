@@ -27,6 +27,6 @@
 6. Fix truncated files (unclosed `<details>`): 10/تیوری.md, 13/فتیوری-code-*, 12/01_Protocol.md, 15/01-Theory…, 10/gemini-code-کاربرد.md.
 
 ## Bugs (scientific errors found)
-- `07/آنالیز.md:6` and `08/theory.md:273`: E = 10^slope → correct: E = 10^(-1/slope) − 1.
+- (Retracted) E = 10^slope in LinRegPCR sections is CORRECT (slope of log10 F vs cycle = amplification factor). Clarifying note added in analysis repo.
 - `04/03_pcr_exercises_and_answer_key.md` Q7: primer ATGCGATCGATCGATCGATC is A=T=G=C=5 (50% GC) → Wallace Tm = 60 °C (question says 40% GC, answer says 60% GC and 64 °C).
 - Same file, answer 18: genome mass = 4.86e-15 g = 4.86e-6 ng (not e-9 ng); copies in 10 ng ≈ 2.06e6 (not 2.06e9).
