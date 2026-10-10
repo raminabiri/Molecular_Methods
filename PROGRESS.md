@@ -1,32 +1,39 @@
 # PROGRESS
 
 ## Done
-- 2026-10-09: Full repo review (structure + spot-check of calculations). No content files changed.
+- 2026-10-09: Full repo review (structure + spot-check of calculations).
+- 2026-10-10: Restructure on branch `restructure` (snapshot commit f72871c keeps all old content).
+  - Cleanup: duplicates, .Rhistory removed; .gitignore added.
+  - qPCR data-analysis files moved OUT to `/data/Molecular_Data_Analysis/qPCR/` (separate local git repo, uncommitted).
+  - Topics rewritten (6 files each, old folders deleted): 01 Lab basics, 02 DNA, 03 RNA, 04 Protein, 05 Standard PCR, 06 Multiplex/Gradient, 07 LAMP/RPA.
 
-## Decisions (2026-10-09, user)
+## Decisions (user)
 - One README for the whole repo only — no per-folder README.
-- New first section: buffers/solutions & lab calculations, before DNA extraction (renumber all folders).
-- Merge 16–18 into one Molecular Typing folder; English-only filenames.
-- Repo will go public on GitHub; peer review by a few colleagues.
-- Per-folder architecture APPROVED: 01_Theory, 02_Protocol, 03_Troubleshooting, 04_Assessment, 05_Answers, 06_Reference_Tables, figures/.
-- Protocols: extremely detailed, written for someone who has never been in a lab (kit handling, ice, g + rpm). NGS must be exact.
-- Scope: no computational data analysis (qPCR software analysis, NGS bioinformatics) — move to separate place; bench QC/interpretation stays.
-- Troubleshooting: fully expert level (senior molecular lab supervisor).
-- Microarray: no own folder — short theory/comparison section inside NGS chapter.
-- MALDI-TOF added as 17_Microbial_Identification_MALDI-TOF (+16S ID), before 18_Molecular_Typing (ERIC/MLST/PFGE); 19_CRISPR_Cas last. Pick one platform (Bruker or VITEK MS); note in README it is protein MS.
-- Theory files must explain instrument engineering (thermocycler: Peltier, block uniformity, heated lid, ramp rate; qPCR: optics, excitation/filters, detectors, ROX) and instrument chemistry where relevant (e.g. NGS SBS, nanopore, SMRT).
-- The examples given are NOT exhaustive: in every topic, explain chemistry wherever relevant and briefly explain instrument engineering wherever interesting (any instrument used).
-- PROPOSED (awaiting OK): 18_Molecular_Typing subfolders = ERIC_rep-PCR, MLST, PFGE, VNTR_MLVA (incl. MIRU-VNTR 24-loci), Spoligotyping (+ short theory note on WGS typing cgMLST/SNP). MTB = BSL-3 → work from heat-inactivated DNA.
+- Per-folder files: 01_Theory, 02_Protocol, 03_Troubleshooting, 04_Assessment, 05_Answers, 06_Reference_Tables (+ figures/ when needed). YAML header (status/reviewer/last_reviewed) on every file. English-only filenames.
+- Protocols: extremely detailed, for someone never in a lab (kit handling, ice, g + rpm). Kit-anchored with "check your kit manual" flags. NGS must be exact.
+- Troubleshooting: expert level (senior lab supervisor).
+- Theory: explain chemistry and instrument engineering wherever relevant (examples not exhaustive).
+- Scope: no computational data analysis (moved out); bench QC/interpretation stays.
+- Microarray: no folder — short section inside NGS chapter.
+- Molecular typing: one folder with subfolders ERIC_rep-PCR, MLST, PFGE, VNTR_MLVA (incl. MIRU-VNTR), Spoligotyping (+ short WGS-typing note). MTB = BSL-3.
+- MALDI-TOF chapter before typing; pick one platform; note it is protein MS.
+- Repo goes public on GitHub; peer review by colleagues.
+- Central formula sheet = 01_Lab_Basics/06_Reference_Tables.md.
+- No fabricated links: only books / DOIs / official manuals.
+
+## Final numbering (18 topics)
+01 Lab_Basics_Buffers_and_Calculations ✔ | 02 DNA_Extraction ✔ | 03 RNA_Extraction_and_Handling ✔ | 04 Protein_Extraction_and_Quantification ✔ | 05 Standard_PCR ✔ | 06 Multiplex_and_Gradient_PCR ✔ | 07 Isothermal_Amplification_LAMP ✔ | 08 RealTime_qPCR | 09 Agarose_Gel_Electrophoresis | 10 Southern_and_Northern_Blotting | 11 Western_Blotting | 12 Sanger_Sequencing | 13 NGS (+ microarray) | 14 Prokaryotic_Cloning_and_Plasmids | 15 Eukaryotic_Cloning_and_Vectors | 16 Microbial_Identification_MALDI-TOF | 17 Molecular_Typing | 18 CRISPR_Cas
+- Earlier chat listed MALDI=17/Typing=18/CRISPR=19; correct after dropping microarray is 16/17/18 → tell user.
+- Some written files cross-reference old numbers (e.g. "فصل ۱۹" for CRISPR, "فصل ۱۸" for typing, "فصل ۱۵" for cloning, "فصل ۱۶" MALDI). Fix all at the end with grep.
 
 ## Next steps
-1. Clean up: delete duplicates/stray files (`01_Protocol (Copy).md`, `06/01_Basics_md.md`, `08/آنالیز.md`, all `gemini-code-*`, `.Rhistory`), add `.gitignore`.
-2. Move misplaced content: `08/theory.md` (qPCR) → 07; `08/01-Theory_Western_Northern_bloting.md` (Southern/Northern) → 09.
-3. Unify per-folder naming to the approved architecture (see Decisions); renumber with 01_Lab_Basics_Buffers_and_Calculations first.
-4. Merge/split 16–18 (ERIC / MLST / PFGE) — 18 name still says PFGE_MLST_ERIC; update root README (says 17 folders).
-5. Fill empty topics: 09, 11, 10/01_Protocol, 13/01_Protocol, 18 placeholders.
-6. Fix truncated files (unclosed `<details>`): 10/تیوری.md, 13/فتیوری-code-*, 12/01_Protocol.md, 15/01-Theory…, 10/gemini-code-کاربرد.md.
+1. Write topics 08–18. Old folders to merge then delete: 07_RealTime_qPCR→08; 08_Agarose→09 (its Southern/Northern theory file → 10); 09_Southern→10; 10_Western→11; 11_Microarray→13; 12_Sanger→12; 13_NGS→13; 14→14; 15→15; 16/17/18 typing→17; 19_CRISPR→18.
+2. Rewrite root README.
+3. Grep and fix cross-references.
+4. Ask user before push / merge; ask which license.
 
-## Bugs (scientific errors found)
-- (Retracted) E = 10^slope in LinRegPCR sections is CORRECT (slope of log10 F vs cycle = amplification factor). Clarifying note added in analysis repo.
-- `04/03_pcr_exercises_and_answer_key.md` Q7: primer ATGCGATCGATCGATCGATC is A=T=G=C=5 (50% GC) → Wallace Tm = 60 °C (question says 40% GC, answer says 60% GC and 64 °C).
-- Same file, answer 18: genome mass = 4.86e-15 g = 4.86e-6 ng (not e-9 ng); copies in 10 ng ≈ 2.06e6 (not 2.06e9).
+## Bugs fixed (scientific errors in old content)
+- PCR exercises: Tm question (primer is 50% GC → Wallace 60°C); genome copies in 10 ng (2.06e6, not 2.06e9); 1.85^5 = 21.7 (not 22.9); ΔTm 14°C answer was wrong.
+- Old Bio-Rad text: gradient across 12 columns; Bio-Rad T100/C1000 gradient is across rows (flagged "verify on instrument").
+- Old YouTube/JoVE links looked fabricated → removed.
+- (Retracted) E = 10^slope in LinRegPCR sections is CORRECT.
