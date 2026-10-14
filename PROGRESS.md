@@ -1,39 +1,74 @@
 # PROGRESS
 
-## Done
-- 2026-10-09: Full repo review (structure + spot-check of calculations).
-- 2026-10-10: Restructure on branch `restructure` (snapshot commit f72871c keeps all old content).
-  - Cleanup: duplicates, .Rhistory removed; .gitignore added.
-  - qPCR data-analysis files moved OUT to `/data/Molecular_Data_Analysis/qPCR/` (separate local git repo, uncommitted).
-  - Topics rewritten (6 files each, old folders deleted): 01 Lab basics, 02 DNA, 03 RNA, 04 Protein, 05 Standard PCR, 06 Multiplex/Gradient, 07 LAMP/RPA.
+## 1. Current goal
+Rebuild the whole repo as a Persian bench reference with **18 topics**, each with the same 6 files:
+`01_Theory.md` (incl. chemistry + instrument engineering), `02_Protocol.md` (beginner-level, step by step),
+`03_Troubleshooting.md` (expert level), `04_Assessment.md`, `05_Answers.md`, `06_Reference_Tables.md`.
+Work happens on branch **`restructure`**; `main` keeps the old content untouched until everything is done.
 
-## Decisions (user)
-- One README for the whole repo only — no per-folder README.
-- Per-folder files: 01_Theory, 02_Protocol, 03_Troubleshooting, 04_Assessment, 05_Answers, 06_Reference_Tables (+ figures/ when needed). YAML header (status/reviewer/last_reviewed) on every file. English-only filenames.
-- Protocols: extremely detailed, for someone never in a lab (kit handling, ice, g + rpm). Kit-anchored with "check your kit manual" flags. NGS must be exact.
-- Troubleshooting: expert level (senior lab supervisor).
-- Theory: explain chemistry and instrument engineering wherever relevant (examples not exhaustive).
-- Scope: no computational data analysis (moved out); bench QC/interpretation stays.
-- Microarray: no folder — short section inside NGS chapter.
-- Molecular typing: one folder with subfolders ERIC_rep-PCR, MLST, PFGE, VNTR_MLVA (incl. MIRU-VNTR), Spoligotyping (+ short WGS-typing note). MTB = BSL-3.
-- MALDI-TOF chapter before typing; pick one platform; note it is protein MS.
-- Repo goes public on GitHub; peer review by colleagues.
-- Central formula sheet = 01_Lab_Basics/06_Reference_Tables.md.
-- No fabricated links: only books / DOIs / official manuals.
+## 2. Done so far
+- Branch `restructure` created; snapshot commit `f72871c` preserves all original files.
+- Cleanup: duplicates, `.Rhistory`, `gemini-code-*` removed; `.gitignore` added.
+- qPCR data-analysis files moved OUT of this repo to `/data/Molecular_Data_Analysis/qPCR/` (local only, no git commit there yet).
+- **Topics 01–15 complete** (01–14 pushed; 15 committed locally as `46f2b8a`):
+  01 Lab basics/buffers (central formula sheet) · 02 DNA extraction · 03 RNA · 04 Protein ·
+  05 Standard PCR · 06 Multiplex/gradient/touchdown · 07 LAMP+RPA · 08 Real-Time qPCR ·
+  09 Agarose gel · 10 Southern/Northern · 11 Western+SDS-PAGE · 12 Sanger · 13 NGS (+microarray section) ·
+  14 Prokaryotic cloning/plasmids · 15 Eukaryotic cloning/transfection/viral vectors.
+- 2026-10-14: topic 15 finished (`05_Answers.md`, `06_Reference_Tables.md` written; the 5 old files in that folder `git rm`-ed) and committed.
+- 2026-10-14: **topic 14 expanded on user request** (uncommitted at time of writing — see section 3):
+  full vector taxonomy (cloning/expression/shuttle/broad-host-range/suicide/phage/phagemid/cosmid/fosmid/BAC/PAC/YAC/
+  reporter/IVT/Gateway/mobilizable), expression-system table (pET, pBAD, pGEX, pMAL, pQE, pCold, pETDuet),
+  shuttle vectors in depth (episomal vs integrative), and a complete cloning-methods section
+  (TA, A-tailing, TOPO + directional TOPO, blunt, Gibson/HiFi, LIC, SLIC, CPEC, RF, USER, LCR,
+  Golden Gate/MoClo, Gateway BP/LR, λ Red recombineering, whole-plasmid mutagenesis, direct synthesis)
+  with mechanism, applications, differences and a "which method when" decision table.
+  Also: 3 new protocols (TA/TOPO, Gibson, Golden Gate), troubleshooting for each method,
+  13 new assessment questions + worked answers, 4 new reference tables, 10 new references.
 
-## Final numbering (18 topics)
-01 Lab_Basics_Buffers_and_Calculations ✔ | 02 DNA_Extraction ✔ | 03 RNA_Extraction_and_Handling ✔ | 04 Protein_Extraction_and_Quantification ✔ | 05 Standard_PCR ✔ | 06 Multiplex_and_Gradient_PCR ✔ | 07 Isothermal_Amplification_LAMP ✔ | 08 RealTime_qPCR | 09 Agarose_Gel_Electrophoresis | 10 Southern_and_Northern_Blotting | 11 Western_Blotting | 12 Sanger_Sequencing | 13 NGS (+ microarray) | 14 Prokaryotic_Cloning_and_Plasmids | 15 Eukaryotic_Cloning_and_Vectors | 16 Microbial_Identification_MALDI-TOF | 17 Molecular_Typing | 18 CRISPR_Cas
-- Earlier chat listed MALDI=17/Typing=18/CRISPR=19; correct after dropping microarray is 16/17/18 → tell user.
-- Some written files cross-reference old numbers (e.g. "فصل ۱۹" for CRISPR, "فصل ۱۸" for typing, "فصل ۱۵" for cloning, "فصل ۱۶" MALDI). Fix all at the end with grep.
+## 3. Files changed
+- New folders `01_…` to `15_…`, 6 files each (15 now complete).
+- Topic 14: all 6 files edited for the vector/cloning-method expansion. Heading numbering inside
+  `01_Theory.md` uses `۲.۳`–`۲.۹` and `۴.الف…` so that existing section numbers (3, 4, 5…) and any
+  cross-references to them stay valid — do not renumber.
+- Deleted old folders after merging their usable content: `01_DNA_Extraction`, `02_RNA_…`, `03_Protein_…`,
+  `04_Standard_PCR`, `05_Multiplex_…`, `06_Isothermal_…`, `07_RealTime_qPCR`, `08_Agarose_…`,
+  `09_Southern_…`, `10_Western_…`, `11_DNA_Microarray_Technology`, `13_NGS` old files, `14_…` old files.
+- Still old/untouched: `15_Eukaryotic_Cloning_and_Vectors` old files (`01_Protocol.md`, `01-Theory_Eukaryotic_Cloning.md`,
+  `02_Assessment.md`, `03_Answers.md`, `04_Standard_Tables.md`), `16_Molecular_Typing_ERIC`,
+  `17_Molecular_Typing_MLST`, `18_Molecular_Typing_PFGE_MLST_ERIC`, `19_CRISPR_Cas_Editing_and_Diagnostics`.
+- `PROGRESS.md`, `.gitignore`.
 
-## Next steps
-1. Write topics 08–18. Old folders to merge then delete: 07_RealTime_qPCR→08; 08_Agarose→09 (its Southern/Northern theory file → 10); 09_Southern→10; 10_Western→11; 11_Microarray→13; 12_Sanger→12; 13_NGS→13; 14→14; 15→15; 16/17/18 typing→17; 19_CRISPR→18.
-2. Rewrite root README.
-3. Grep and fix cross-references.
-4. Ask user before push / merge; ask which license.
+## 4. Key decisions and rejected approaches
+| Decision | Reason |
+| :--- | :--- |
+| One root README only, no per-folder README | user's call; avoids duplicated, drifting text |
+| 6-file template + YAML header (`status`/`reviewer`/`last_reviewed`) | makes peer review traceable before going public |
+| Protocols written for someone who has never been in a lab | user has not personally run several of these methods |
+| Protocols anchored to a named kit + 🔎 marks on numbers to verify | kit versions change; prevents silently wrong volumes |
+| Computational analysis moved out of the repo | user wants wet-lab only; bench QC/interpretation stays |
+| Microarray gets a section inside NGS, **no own folder** | superseded by RNA-seq; still used for SNP arrays/CMA only |
+| MALDI-TOF added as its own topic (16) before typing | standard ID method today; fits the microbiology focus |
+| 16/17/18 merged into one `17_Molecular_Typing` with subfolders | ERIC/MLST/PFGE/VNTR/spoligotyping are one family |
+| Final count 18 topics (not 19) | after dropping the microarray folder — earlier chat said 19 |
+| Rejected: keeping the old per-file numbering (`01_Protocol`, `04_Standard_Tables`) | inconsistent across folders; no Theory/Troubleshooting split |
+| Rejected: fabricated YouTube/JoVE links from the old files | unverifiable; replaced with books, DOIs, official manuals |
+| Rejected: merging into `main` now | user chose to merge only after all 18 topics are finished |
 
-## Bugs fixed (scientific errors in old content)
-- PCR exercises: Tm question (primer is 50% GC → Wallace 60°C); genome copies in 10 ng (2.06e6, not 2.06e9); 1.85^5 = 21.7 (not 22.9); ΔTm 14°C answer was wrong.
-- Old Bio-Rad text: gradient across 12 columns; Bio-Rad T100/C1000 gradient is across rows (flagged "verify on instrument").
-- Old YouTube/JoVE links looked fabricated → removed.
-- (Retracted) E = 10^slope in LinRegPCR sections is CORRECT.
+## 5. Known bugs / corrections made
+No build or runtime errors (documentation repo). Scientific errors found in the **old** content and fixed in the rewrite:
+- Old `04_Standard_PCR/03_pcr_exercises_and_answer_key.md` Q7: primer `ATGCGATCGATCGATCGATC` was described as 40% GC with A=4,T=4,G=6,C=6 → it is **5 of each base, 50% GC**, Wallace Tm = **60 °C** (answer said 64 °C).
+- Same file, answer 18: genome copies in 10 ng of a 4.5 Mb genome → **≈2.06×10⁶**, not 2.06×10⁹ (mass written as 4.85×10⁻⁹ ng instead of ≈4.86×10⁻⁶ ng).
+- Same file, answer 15: 1.85⁵ = **21.7×**, not 22.9×.
+- Old Bio-Rad text: gradient described across 12 columns; on T100/C1000 the gradient runs across **rows** → flagged "verify on your instrument".
+- Retracted earlier suspicion: `E = 10^slope` in the LinRegPCR sections is **correct** (slope of log₁₀F vs cycle); a clarifying note was added in the analysis repo.
+
+## 6. Next steps (priority order, one session each)
+1. ~~Finish topic 15~~ **done** (`46f2b8a`). Push `restructure` when the user is ready.
+2. Topic 16 `16_Microbial_Identification_MALDI-TOF` (6 files; pick **one** platform — Bruker Biotyper or VITEK MS — and say in the README it is protein MS; add 16S rRNA identification).
+3. Topic 17 `17_Molecular_Typing` with subfolders `ERIC_rep-PCR`, `MLST`, `PFGE`, `VNTR_MLVA` (incl. MIRU-VNTR 24-locus), `Spoligotyping`, each with the 6 files + a short WGS-typing (cgMLST/SNP) note. MTB work starts from heat-inactivated DNA (BSL-3 warning). Then delete folders 16/17/18 old.
+4. Topic 18 `18_CRISPR_Cas` (6 files) from old `19_CRISPR_Cas_Editing_and_Diagnostics`; then delete that folder.
+5. Rewrite root `README.md`: 18 topics, the 6-file template, how to use, review status table, license placeholder (**ask user which license**).
+6. Grep and fix stale cross-references (`grep -rn "فصل ۱[۵-۹]"`) after the final renumbering; check every relative link resolves.
+7. Decide what to do with `/data/Molecular_Data_Analysis/` (separate GitHub repo?) and ask the user.
+8. Merge `restructure` → `main` (user approved only at the end), then invite the peer reviewers.
