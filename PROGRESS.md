@@ -34,9 +34,27 @@ Work happens on branch **`restructure`**; `main` keeps the old content untouched
   including the warning that Bruker log(score) and VITEK MS confidence % are not interconvertible.
   **16S rRNA identification is included in this topic** (27F/1492R, Sanger, identity/coverage
   thresholds, when 16S is insufficient → rpoB/hsp65/ITS/WGS), per the earlier decision.
+- 2026-10-15: **topic 17 written** — `17_Molecular_Typing/`, one shared 6-file set (NOT five
+  subfolders). User's instruction: put what is common in one place and separate only what differs.
+  Theory holds the shared core (what typing answers, vocabulary, the six judging criteria, Simpson's
+  D, band- vs code-based) plus a section per method (ERIC/rep-PCR, PFGE incl. CHEF engineering and
+  Tenover, MLST, MLVA/MIRU-VNTR, spoligotyping) and WGS typing. Protocol section 0 = steps shared by
+  all methods; protocols A-F = per method. Old folders 16_ERIC, 17_MLST, 18_PFGE_MLST_ERIC deleted.
+- 2026-10-15: **topic 18 written** — `18_CRISPR_Cas/`, 6 files; old `19_CRISPR_...` deleted.
+  Covers natural CRISPR immunity, Cas9/Cas12a/Cas13, repair outcomes, base/prime editing, CRISPRi/a,
+  guide design, off-target, delivery, edit validation (TIDE/T7E1/amplicon NGS/clone genotyping/
+  Western/rescue), and diagnostics (RPA + Cas12a/Cas13, SHERLOCK/DETECTR).
+  Ethics stated as scope limits: human germline, embryo editing and gene drives are OUT of scope.
+- 2026-10-15: **README.md rewritten** — 18 topics, the 6-file template, the marker legend
+  (🔎/❗/⚠️/⛔/📌/⏸/🧊), how-to-use, review-status table (all `draft`), peer-review instructions,
+  licence section left as a TODO, and a disclaimer.
+- 2026-10-15: cross-references checked: no stale `فصل ۱۹`; chapter refs 16/17/18 all consistent;
+  relative links resolve; every one of the 18 folders has exactly 6 files.
 
 ## 3. Files changed
-- New folders `01_…` to `15_…`, 6 files each (15 now complete).
+- **All 18 topic folders exist and each has exactly 6 files** (verified 2026-10-15).
+- Old folders deleted on this branch (still present in `main`): the three typing folders and
+  `19_CRISPR_Cas_Editing_and_Diagnostics`.
 - Topic 14: all 6 files edited for the vector/cloning-method expansion. Heading numbering inside
   `01_Theory.md` uses `۲.۳`–`۲.۹` and `۴.الف…` so that existing section numbers (3, 4, 5…) and any
   cross-references to them stay valid — do not renumber.
@@ -86,9 +104,14 @@ clones the GitHub repo and would not see topics 14-expansion, 15 or 16.
 2. ~~Topic 16 MALDI-TOF~~ **done** (6 files, 2026-10-15). Platform decision: **Bruker** anchors the
    protocol (larger installed base, local MSP libraries, resistance/typing applications);
    VITEK MS covered as a differences section. README must still say this is **protein MS**.
-3. Topic 17 `17_Molecular_Typing` with subfolders `ERIC_rep-PCR`, `MLST`, `PFGE`, `VNTR_MLVA` (incl. MIRU-VNTR 24-locus), `Spoligotyping`, each with the 6 files + a short WGS-typing (cgMLST/SNP) note. MTB work starts from heat-inactivated DNA (BSL-3 warning). Then delete folders 16/17/18 old.
-4. Topic 18 `18_CRISPR_Cas` (6 files) from old `19_CRISPR_Cas_Editing_and_Diagnostics`; then delete that folder.
-5. Rewrite root `README.md`: 18 topics, the 6-file template, how to use, review status table, license placeholder (**ask user which license**).
-6. Grep and fix stale cross-references (`grep -rn "فصل ۱[۵-۹]"`) after the final renumbering; check every relative link resolves.
-7. Decide what to do with `/data/Molecular_Data_Analysis/` (separate GitHub repo?) and ask the user.
-8. Merge `restructure` → `main` (user approved only at the end), then invite the peer reviewers.
+3. ~~Topic 17~~ **done** — built as ONE shared 6-file set, not subfolders (user's call).
+4. ~~Topic 18 CRISPR~~ **done**.
+5. ~~Rewrite README~~ **done**, except: **ASK USER WHICH LICENCE** (CC BY 4.0 / CC BY-SA 4.0 /
+   CC BY-NC 4.0). The README has a TODO comment and says "all rights reserved" until a `LICENSE`
+   file is added.
+6. ~~Cross-references~~ **done** (nothing stale found).
+7. **Push `restructure`** — BLOCKED, see section 5.1. Needs `gh auth login` in the user's terminal.
+8. Decide what to do with `/data/Molecular_Data_Analysis/` (separate GitHub repo?) and ask the user.
+9. Merge `restructure` → `main` (user approved only at the end), then invite the peer reviewers.
+10. Optional polish before going public: add `LICENSE`, fill the review-status table as reviews come
+    in, and consider a short CONTRIBUTING.md (the README already holds review instructions).
