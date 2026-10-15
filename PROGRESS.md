@@ -80,7 +80,8 @@ Work happens on branch **`restructure`**; `main` keeps the old content untouched
 | Final count 18 topics (not 19) | after dropping the microarray folder — earlier chat said 19 |
 | Rejected: keeping the old per-file numbering (`01_Protocol`, `04_Standard_Tables`) | inconsistent across folders; no Theory/Troubleshooting split |
 | Rejected: fabricated YouTube/JoVE links from the old files | unverifiable; replaced with books, DOIs, official manuals |
-| Rejected: merging into `main` now | user chose to merge only after all 18 topics are finished |
+| Rejected: merging into `main` now | user chose to merge only after all 18 topics are finished — **done on 2026-10-15** |
+| Licence: **CC BY 4.0** | user's call: free reuse and translation with attribution, for educational content |
 
 ## 5. Known bugs / corrections made
 No build or runtime errors (documentation repo). Scientific errors found in the **old** content and fixed in the rewrite:
@@ -106,9 +107,9 @@ clones the GitHub repo and would not see topics 14-expansion, 15 or 16.
    VITEK MS covered as a differences section. README must still say this is **protein MS**.
 3. ~~Topic 17~~ **done** — built as ONE shared 6-file set, not subfolders (user's call).
 4. ~~Topic 18 CRISPR~~ **done**.
-5. ~~Rewrite README~~ **done**, except: **ASK USER WHICH LICENCE** (CC BY 4.0 / CC BY-SA 4.0 /
-   CC BY-NC 4.0). The README has a TODO comment and says "all rights reserved" until a `LICENSE`
-   file is added.
+5. ~~Rewrite README~~ **done**. Licence decided by the user on 2026-10-15: **CC BY 4.0**
+   (reuse and translation free, with attribution; commercial use allowed). `LICENSE` added
+   (bilingual, pointing to the canonical legal text) and the README licence section filled in.
 6. ~~Cross-references~~ **done** (nothing stale found).
 7. **Push `restructure`** — BLOCKED, see section 5.1. Needs `gh auth login` in the user's terminal.
 8. Decide what to do with `/data/Molecular_Data_Analysis/` (separate GitHub repo?) and ask the user.
