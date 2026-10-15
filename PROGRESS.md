@@ -25,6 +25,15 @@ Work happens on branch **`restructure`**; `main` keeps the old content untouched
   with mechanism, applications, differences and a "which method when" decision table.
   Also: 3 new protocols (TA/TOPO, Gibson, Golden Gate), troubleshooting for each method,
   13 new assessment questions + worked answers, 4 new reference tables, 10 new references.
+- 2026-10-15: **topic 16 written** — `16_Microbial_Identification_MALDI-TOF/`, all 6 files.
+  Structure agreed with the user: theory is platform-neutral (MALDI physics + instrument
+  engineering: matrix chemistry, t ∝ √(m/z), delayed extraction, reflectron, vacuum, detector);
+  the step-by-step protocol is anchored to **Bruker Biotyper** (direct smear, on-target formic
+  acid, full ethanol/formic acid extraction, HCCA matrix, BTS calibrator, target cleaning) with a
+  separate **VITEK MS differences** section; troubleshooting and tables cover **both** platforms,
+  including the warning that Bruker log(score) and VITEK MS confidence % are not interconvertible.
+  **16S rRNA identification is included in this topic** (27F/1492R, Sanger, identity/coverage
+  thresholds, when 16S is insufficient → rpoB/hsp65/ITS/WGS), per the earlier decision.
 
 ## 3. Files changed
 - New folders `01_…` to `15_…`, 6 files each (15 now complete).
@@ -63,9 +72,20 @@ No build or runtime errors (documentation repo). Scientific errors found in the 
 - Old Bio-Rad text: gradient described across 12 columns; on T100/C1000 the gradient runs across **rows** → flagged "verify on your instrument".
 - Retracted earlier suspicion: `E = 10^slope` in the LinRegPCR sections is **correct** (slope of log₁₀F vs cycle); a clarifying note was added in the analysis repo.
 
+## 5.1. Blocked: cannot push
+`origin/restructure` is stuck at `16f637e`; the local branch is ahead by the topic 14/15/16 commits.
+This environment has **no usable GitHub credentials**: no `credential.helper`, no `~/.git-credentials`,
+and `gh auth status` returns "Timeout trying to log in to github.com account raminabiri (keyring)".
+A `git push` therefore hangs waiting for a username/token. The user must run `gh auth login`
+(or configure a credential helper / PAT) once in their own terminal; then push.
+Consequence: **scheduled cloud routines are useless until this is fixed**, because a cloud agent
+clones the GitHub repo and would not see topics 14-expansion, 15 or 16.
+
 ## 6. Next steps (priority order, one session each)
 1. ~~Finish topic 15~~ **done** (`46f2b8a`). Push `restructure` when the user is ready.
-2. Topic 16 `16_Microbial_Identification_MALDI-TOF` (6 files; pick **one** platform — Bruker Biotyper or VITEK MS — and say in the README it is protein MS; add 16S rRNA identification).
+2. ~~Topic 16 MALDI-TOF~~ **done** (6 files, 2026-10-15). Platform decision: **Bruker** anchors the
+   protocol (larger installed base, local MSP libraries, resistance/typing applications);
+   VITEK MS covered as a differences section. README must still say this is **protein MS**.
 3. Topic 17 `17_Molecular_Typing` with subfolders `ERIC_rep-PCR`, `MLST`, `PFGE`, `VNTR_MLVA` (incl. MIRU-VNTR 24-locus), `Spoligotyping`, each with the 6 files + a short WGS-typing (cgMLST/SNP) note. MTB work starts from heat-inactivated DNA (BSL-3 warning). Then delete folders 16/17/18 old.
 4. Topic 18 `18_CRISPR_Cas` (6 files) from old `19_CRISPR_Cas_Editing_and_Diagnostics`; then delete that folder.
 5. Rewrite root `README.md`: 18 topics, the 6-file template, how to use, review status table, license placeholder (**ask user which license**).
