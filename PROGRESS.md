@@ -91,14 +91,38 @@ No build or runtime errors (documentation repo). Scientific errors found in the 
 - Old Bio-Rad text: gradient described across 12 columns; on T100/C1000 the gradient runs across **rows** → flagged "verify on your instrument".
 - Retracted earlier suspicion: `E = 10^slope` in the LinRegPCR sections is **correct** (slope of log₁₀F vs cycle); a clarifying note was added in the analysis repo.
 
-## 5.1. Blocked: cannot push
-`origin/restructure` is stuck at `16f637e`; the local branch is ahead by the topic 14/15/16 commits.
-This environment has **no usable GitHub credentials**: no `credential.helper`, no `~/.git-credentials`,
-and `gh auth status` returns "Timeout trying to log in to github.com account raminabiri (keyring)".
-A `git push` therefore hangs waiting for a username/token. The user must run `gh auth login`
-(or configure a credential helper / PAT) once in their own terminal; then push.
-Consequence: **scheduled cloud routines are useless until this is fixed**, because a cloud agent
-clones the GitHub repo and would not see topics 14-expansion, 15 or 16.
+## 5.1. Blocked: cannot push (diagnosis + exact fix)
+`main` and `restructure` both sit at `16bda44`; `origin/*` is 24 commits behind.
+
+**Diagnosis (2026-10-15):** `~/.config/gh/hosts.yml` registers the account `raminabiri` but has
+**no `oauth_token` line** - gh stored the token in the OS keyring, and this environment (headless,
+no unlocked keyring) cannot read it. Hence `gh auth status` -> "Timeout trying to log in to
+github.com account raminabiri (keyring)" and `git push` hangs waiting for a username/password.
+There is no `credential.helper` and no `~/.git-credentials` either.
+
+**Fix A - re-login with plaintext token storage (gh 2.45 supports `--insecure-storage`):**
+```
+gh auth logout --hostname github.com
+gh auth login --hostname github.com --git-protocol https --insecure-storage
+gh auth setup-git
+```
+(The token then lives in `~/.config/gh/hosts.yml`, mode 600, instead of the keyring.)
+
+**Fix B - SSH key, survives token expiry and needs no keyring:**
+```
+ssh-keygen -t ed25519 -C "ramin.abiri@gmail.com" -f ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub        # add at https://github.com/settings/keys
+cd /data/Molecular_Methods
+git remote set-url origin git@github.com:raminabiri/Molecular_Methods.git
+ssh -T git@github.com            # expect "successfully authenticated"
+```
+
+**Then push both branches:**
+```
+cd /data/Molecular_Methods
+git push origin main restructure
+```
+No `--force` is needed anywhere: `main` was fast-forwarded, history is linear.
 
 ## 6. Next steps (priority order, one session each)
 1. ~~Finish topic 15~~ **done** (`46f2b8a`). Push `restructure` when the user is ready.
@@ -113,6 +137,7 @@ clones the GitHub repo and would not see topics 14-expansion, 15 or 16.
 6. ~~Cross-references~~ **done** (nothing stale found).
 7. **Push `restructure`** — BLOCKED, see section 5.1. Needs `gh auth login` in the user's terminal.
 8. Decide what to do with `/data/Molecular_Data_Analysis/` (separate GitHub repo?) and ask the user.
-9. Merge `restructure` → `main` (user approved only at the end), then invite the peer reviewers.
+9. ~~Merge `restructure` → `main`~~ **done 2026-10-15** (fast-forward, no conflicts; both branches
+   at `16bda44`). Remaining: push, then invite the peer reviewers.
 10. Optional polish before going public: add `LICENSE`, fill the review-status table as reviews come
     in, and consider a short CONTRIBUTING.md (the README already holds review instructions).
