@@ -1,133 +1,110 @@
 # PROGRESS
 
 ## 1. Current goal
-Rebuild the whole repo as a Persian bench reference with **18 topics**, each with the same 6 files:
-`01_Theory.md` (incl. chemistry + instrument engineering), `02_Protocol.md` (beginner-level, step by step),
-`03_Troubleshooting.md` (expert level), `04_Assessment.md`, `05_Answers.md`, `06_Reference_Tables.md`.
-Work happens on branch **`restructure`**; `main` keeps the old content untouched until everything is done.
+A Persian bench reference for molecular methods: **18 topics**, each with the same 6 files —
+`01_Theory.md` (chemistry + instrument engineering), `02_Protocol.md` (written for someone who has
+never been in a lab), `03_Troubleshooting.md` (senior-supervisor level), `04_Assessment.md`,
+`05_Answers.md`, `06_Reference_Tables.md`.
+All 18 topics are written and pushed. The work in progress now is a **teaching-consistency pass**
+over every file (see section 2), not new content. After that: peer review and 🔎 number checks.
 
 ## 2. Done so far
-- Branch `restructure` created; snapshot commit `f72871c` preserves all original files.
-- Cleanup: duplicates, `.Rhistory`, `gemini-code-*` removed; `.gitignore` added.
-- qPCR data-analysis files moved OUT of this repo to `/data/Molecular_Data_Analysis/qPCR/` (local only, no git commit there yet).
-- **Topics 01–15 complete** (01–14 pushed; 15 committed locally as `46f2b8a`):
-  01 Lab basics/buffers (central formula sheet) · 02 DNA extraction · 03 RNA · 04 Protein ·
-  05 Standard PCR · 06 Multiplex/gradient/touchdown · 07 LAMP+RPA · 08 Real-Time qPCR ·
-  09 Agarose gel · 10 Southern/Northern · 11 Western+SDS-PAGE · 12 Sanger · 13 NGS (+microarray section) ·
-  14 Prokaryotic cloning/plasmids · 15 Eukaryotic cloning/transfection/viral vectors.
-- 2026-10-14: topic 15 finished (`05_Answers.md`, `06_Reference_Tables.md` written; the 5 old files in that folder `git rm`-ed) and committed.
-- 2026-10-14: **topic 14 expanded on user request** (uncommitted at time of writing — see section 3):
-  full vector taxonomy (cloning/expression/shuttle/broad-host-range/suicide/phage/phagemid/cosmid/fosmid/BAC/PAC/YAC/
-  reporter/IVT/Gateway/mobilizable), expression-system table (pET, pBAD, pGEX, pMAL, pQE, pCold, pETDuet),
-  shuttle vectors in depth (episomal vs integrative), and a complete cloning-methods section
-  (TA, A-tailing, TOPO + directional TOPO, blunt, Gibson/HiFi, LIC, SLIC, CPEC, RF, USER, LCR,
-  Golden Gate/MoClo, Gateway BP/LR, λ Red recombineering, whole-plasmid mutagenesis, direct synthesis)
-  with mechanism, applications, differences and a "which method when" decision table.
-  Also: 3 new protocols (TA/TOPO, Gibson, Golden Gate), troubleshooting for each method,
-  13 new assessment questions + worked answers, 4 new reference tables, 10 new references.
-- 2026-10-15: **topic 16 written** — `16_Microbial_Identification_MALDI-TOF/`, all 6 files.
-  Structure agreed with the user: theory is platform-neutral (MALDI physics + instrument
-  engineering: matrix chemistry, t ∝ √(m/z), delayed extraction, reflectron, vacuum, detector);
-  the step-by-step protocol is anchored to **Bruker Biotyper** (direct smear, on-target formic
-  acid, full ethanol/formic acid extraction, HCCA matrix, BTS calibrator, target cleaning) with a
-  separate **VITEK MS differences** section; troubleshooting and tables cover **both** platforms,
-  including the warning that Bruker log(score) and VITEK MS confidence % are not interconvertible.
-  **16S rRNA identification is included in this topic** (27F/1492R, Sanger, identity/coverage
-  thresholds, when 16S is insufficient → rpoB/hsp65/ITS/WGS), per the earlier decision.
-- 2026-10-15: **topic 17 written** — `17_Molecular_Typing/`, one shared 6-file set (NOT five
-  subfolders). User's instruction: put what is common in one place and separate only what differs.
-  Theory holds the shared core (what typing answers, vocabulary, the six judging criteria, Simpson's
-  D, band- vs code-based) plus a section per method (ERIC/rep-PCR, PFGE incl. CHEF engineering and
-  Tenover, MLST, MLVA/MIRU-VNTR, spoligotyping) and WGS typing. Protocol section 0 = steps shared by
-  all methods; protocols A-F = per method. Old folders 16_ERIC, 17_MLST, 18_PFGE_MLST_ERIC deleted.
-- 2026-10-15: **topic 18 written** — `18_CRISPR_Cas/`, 6 files; old `19_CRISPR_...` deleted.
-  Covers natural CRISPR immunity, Cas9/Cas12a/Cas13, repair outcomes, base/prime editing, CRISPRi/a,
-  guide design, off-target, delivery, edit validation (TIDE/T7E1/amplicon NGS/clone genotyping/
-  Western/rescue), and diagnostics (RPA + Cas12a/Cas13, SHERLOCK/DETECTR).
-  Ethics stated as scope limits: human germline, embryo editing and gene drives are OUT of scope.
-- 2026-10-15: **README.md rewritten** — 18 topics, the 6-file template, the marker legend
-  (🔎/❗/⚠️/⛔/📌/⏸/🧊), how-to-use, review-status table (all `draft`), peer-review instructions,
-  licence section left as a TODO, and a disclaimer.
-- 2026-10-15: cross-references checked: no stale `فصل ۱۹`; chapter refs 16/17/18 all consistent;
-  relative links resolve; every one of the 18 folders has exactly 6 files.
+- All **18 topics** written and pushed; every folder holds exactly 6 files. `README.md` (18 topics,
+  6-file template, marker legend, review-status table, review instructions) and `LICENSE`
+  (CC BY 4.0, bilingual) are in place.
+- Topic 14 expanded earlier on user request (full vector taxonomy + all cloning methods with a
+  "which method when" table).
+- **Teaching-consistency pass, uncommitted (88 files changed).** The agreed format per file type:
+  - `01_Theory.md`: header line (`پیش‌نیاز` · `زمان خواندن` · `فصل‌های مرتبط`), then
+    **در یک نگاه** (5 learning outcomes), **داستان**, **مفهوم به زبان ساده**, the numbered
+    technical sections (unchanged), then **اشتباه‌های رایج**, **📘 برای کنجکاوها**,
+    **جمع‌بندی**, **واژه‌نامه‌ی درس**, `منابع`.
+  - `03_Troubleshooting.md`: diagnosis **tables replaced by numbered prose scenarios**, each as
+    *چه می‌بینید / علت / آزمون / چه کنید*, under a fixed intro line naming the level
+    (`سطح این فایل: سرپرست آزمایشگاه مولکولی`).
+  - `04_Assessment.md`: a `> راهنمایی:` line after **every** question — a formula or a pointer to
+    the exact theory/troubleshooting section, never the answer.
+  - `05_Answers.md`: closing section **اشتباه‌های رایج در این مجموعه** (4–5 items, each naming the
+    question numbers it comes from).
+  - `02_Protocol.md`: a **منطق کلی** paragraph in the intro explaining why the steps exist,
+    `مثلاً` → `برای نمونه`, and 🔎 (not ❗) on kit-dependent numbers.
+- **State of that pass, per file type:**
+  - Theory: **all 18 done** (topic 18 framed this session from the topic-17 pattern).
+  - Troubleshooting: **all 18 done** (01–13 earlier; 14–18 converted this session).
+  - Assessment hints: **all 18 done** (13–18 added this session).
+  - Answers "common mistakes": **all 18 done** (14–18 added this session).
+  - Protocol: `منطق کلی` now in **01, 02, 03, 12, 14, 15, 16, 17, 18**; still missing in
+    **04–11 and 13**. No `مثلاً` left in any protocol file (all → `برای نمونه`), and the
+    kit-dependency intro lines of 02, 03, 14, 16, 17, 18 now carry 🔎 instead of ❗.
+- Fixed this session: stale cross-reference in `15_…/01_Theory.md` (فصل ۰۱ بخش ۶.۶ → ۷.۶); topic 13
+  troubleshooting rewritten in full; the hint cross-references in topic 15's assessment were
+  corrected against the real section numbers of its theory file.
 
-## 3. Files changed
-- **All 18 topic folders exist and each has exactly 6 files** (verified 2026-10-15).
-- Old folders deleted on this branch (still present in `main`): the three typing folders and
-  `19_CRISPR_Cas_Editing_and_Diagnostics`.
-- Topic 14: all 6 files edited for the vector/cloning-method expansion. Heading numbering inside
-  `01_Theory.md` uses `۲.۳`–`۲.۹` and `۴.الف…` so that existing section numbers (3, 4, 5…) and any
-  cross-references to them stay valid — do not renumber.
-- Deleted old folders after merging their usable content: `01_DNA_Extraction`, `02_RNA_…`, `03_Protein_…`,
-  `04_Standard_PCR`, `05_Multiplex_…`, `06_Isothermal_…`, `07_RealTime_qPCR`, `08_Agarose_…`,
-  `09_Southern_…`, `10_Western_…`, `11_DNA_Microarray_Technology`, `13_NGS` old files, `14_…` old files.
-- Still old/untouched: `15_Eukaryotic_Cloning_and_Vectors` old files (`01_Protocol.md`, `01-Theory_Eukaryotic_Cloning.md`,
-  `02_Assessment.md`, `03_Answers.md`, `04_Standard_Tables.md`), `16_Molecular_Typing_ERIC`,
-  `17_Molecular_Typing_MLST`, `18_Molecular_Typing_PFGE_MLST_ERIC`, `19_CRISPR_Cas_Editing_and_Diagnostics`.
-- `PROGRESS.md`, `.gitignore`.
+## 3. Files changed (uncommitted)
+- `01_…` to `18_…`: theory, protocol, troubleshooting, assessment and answers files touched by the
+  pass — 86 topic files plus `PROGRESS.md`.
+- Helper scripts live in the session scratchpad, **not** in the repo:
+  `/tmp/claude-1000/-data-Education-Molecular-Methods/5b05b9b0-3beb-443e-a779-786328a08885/scratchpad/`
+  — `tables2prose.py` (troubleshooting tables → numbered prose) and `add_hints.py` (inserts
+  `> راهنمایی:` lines from a JSON file keyed by question number). Copy them into the next session
+  if the same transformation is needed again; the originals of the converted troubleshooting files
+  are kept there as `1[4-8]_ts_orig.md`.
+- ⚠️ Heading numbering inside `14_…/01_Theory.md` uses `۲.۳`–`۲.۹` and `۴.الف…` on purpose, so the
+  existing section numbers and the references to them stay valid. **Do not renumber.**
 
 ## 4. Key decisions and rejected approaches
 | Decision | Reason |
 | :--- | :--- |
-| One root README only, no per-folder README | user's call; avoids duplicated, drifting text |
-| 6-file template + YAML header (`status`/`reviewer`/`last_reviewed`) | makes peer review traceable before going public |
-| Protocols written for someone who has never been in a lab | user has not personally run several of these methods |
-| Protocols anchored to a named kit + 🔎 marks on numbers to verify | kit versions change; prevents silently wrong volumes |
-| Computational analysis moved out of the repo | user wants wet-lab only; bench QC/interpretation stays |
-| Microarray gets a section inside NGS, **no own folder** | superseded by RNA-seq; still used for SNP arrays/CMA only |
-| MALDI-TOF added as its own topic (16) before typing | standard ID method today; fits the microbiology focus |
-| 16/17/18 merged into one `17_Molecular_Typing` with subfolders | ERIC/MLST/PFGE/VNTR/spoligotyping are one family |
-| Final count 18 topics (not 19) | after dropping the microarray folder — earlier chat said 19 |
-| Rejected: keeping the old per-file numbering (`01_Protocol`, `04_Standard_Tables`) | inconsistent across folders; no Theory/Troubleshooting split |
+| Troubleshooting as prose scenarios, not tables | a table cell cannot hold *why* + *how to isolate*; the file is meant to be read, not scanned |
+| Every question gets a hint pointing to a section | the files are used for self-study; a hint keeps the question solvable without the answer key |
+| Hints must cite real section numbers | a wrong pointer is worse than none — all of them were verified against the theory files |
+| "Common mistakes" lists cite question numbers | ties the general lesson back to concrete items |
+| Protocols anchored to a named kit + 🔎 on every number to verify | kit versions change; prevents silently wrong volumes |
+| Computational analysis kept out of the repo | wet-lab only; bench QC/interpretation stays |
+| Microarray = a section inside NGS; typing = one shared 6-file set | avoids duplicated, drifting text |
+| Topic 18: human germline/embryo editing and gene drives declared **out of scope** | ethics; stated in theory, protocol and tables |
+| Licence **CC BY 4.0** | free reuse and translation with attribution |
 | Rejected: fabricated YouTube/JoVE links from the old files | unverifiable; replaced with books, DOIs, official manuals |
-| Rejected: merging into `main` now | user chose to merge only after all 18 topics are finished — **done on 2026-10-15** |
-| Licence: **CC BY 4.0** | user's call: free reuse and translation with attribution, for educational content |
+| Rejected: a scheduled cloud routine to continue the work | cloud agents clone GitHub; the work was unpushed at the time |
 
-## 5. Known bugs / corrections made
-No build or runtime errors (documentation repo). Scientific errors found in the **old** content and fixed in the rewrite:
-- Old `04_Standard_PCR/03_pcr_exercises_and_answer_key.md` Q7: primer `ATGCGATCGATCGATCGATC` was described as 40% GC with A=4,T=4,G=6,C=6 → it is **5 of each base, 50% GC**, Wallace Tm = **60 °C** (answer said 64 °C).
-- Same file, answer 18: genome copies in 10 ng of a 4.5 Mb genome → **≈2.06×10⁶**, not 2.06×10⁹ (mass written as 4.85×10⁻⁹ ng instead of ≈4.86×10⁻⁶ ng).
+## 5. Known bugs / corrections
+No build or runtime errors — this is a documentation repo.
+
+**(a) Scientific errors found in the OLD content and fixed in the rewrite**
+- Old `04_Standard_PCR/03_pcr_exercises…` Q7: primer `ATGCGATCGATCGATCGATC` called 40% GC with
+  A=4,T=4,G=6,C=6 → it is **5 of each base, 50% GC**, Wallace Tm = **60 °C** (answer said 64 °C).
+- Same file, answer 18: genome copies in 10 ng of a 4.5 Mb genome → **≈2.06×10⁶**, not 2.06×10⁹.
 - Same file, answer 15: 1.85⁵ = **21.7×**, not 22.9×.
-- Old Bio-Rad text: gradient described across 12 columns; on T100/C1000 the gradient runs across **rows** → flagged "verify on your instrument".
-- Retracted earlier suspicion: `E = 10^slope` in the LinRegPCR sections is **correct** (slope of log₁₀F vs cycle); a clarifying note was added in the analysis repo.
+- Old Bio-Rad text: gradient described across 12 columns; on T100/C1000 it runs across **rows** →
+  flagged "verify on your instrument".
+- Retracted earlier suspicion: `E = 10^slope` in the LinRegPCR sections is **correct**.
 
-## 5.1. Pushing: nothing is broken, Claude's shell just cannot do it
-`main` and `restructure` both sit at the same commit; `origin/*` is behind until someone pushes.
-
-**The user's own terminal pushes normally** with the usual `git push` - as it always did.
-
-**Why Claude's push hangs (corrected diagnosis, 2026-10-15):** `~/.gitconfig` already contains
-`credential.https://github.com.helper = !/usr/bin/gh auth git-credential`, i.e. `gh auth setup-git`
-was run long ago and the setup is fine. Two things fooled an earlier diagnosis:
-  * `git config --get credential.helper` returns nothing, because the helper is registered
-    **per-URL** (`credential.https://github.com.helper`), not globally. Do not read that as
-    "no helper configured".
-  * Claude's shell has **no TTY** (`tty` -> `not a tty`). When gh cannot reach the OS keyring
-    (headless session), git falls back to *prompting* for username/password - and with no terminal
-    to answer, the push hangs forever instead of failing.
-
-**So: do not reconfigure anything.** Ask the user to run, in their own terminal:
+**(b) Environment quirk, not a repo bug — do not "fix" the user's git config**
+Claude's shell cannot push. Exact error from `gh auth status`:
 ```
-cd /data/Molecular_Methods
-git push origin main restructure
+X Timeout trying to log in to github.com account raminabiri (keyring)
 ```
-No `--force` anywhere: main was fast-forwarded, history is linear.
-(An SSH key was suggested earlier and was unnecessary; the remote is still HTTPS and untouched.)
+and `git push` then hangs with no output. Cause: `~/.gitconfig` registers
+`credential.https://github.com.helper = !/usr/bin/gh auth git-credential` (**per-URL**, which is why
+`git config --get credential.helper` prints nothing — do not read that as "no helper"), gh cannot
+reach the OS keyring in a headless session, so git falls back to *prompting* — and Claude's shell
+has no TTY (`tty` → `not a tty`), so the prompt can never be answered.
+**The user's own terminal pushes normally.** Ask them to run `git push`; reconfigure nothing.
 
 ## 6. Next steps (priority order, one session each)
-1. ~~Finish topic 15~~ **done** (`46f2b8a`). Push `restructure` when the user is ready.
-2. ~~Topic 16 MALDI-TOF~~ **done** (6 files, 2026-10-15). Platform decision: **Bruker** anchors the
-   protocol (larger installed base, local MSP libraries, resistance/typing applications);
-   VITEK MS covered as a differences section. README must still say this is **protein MS**.
-3. ~~Topic 17~~ **done** — built as ONE shared 6-file set, not subfolders (user's call).
-4. ~~Topic 18 CRISPR~~ **done**.
-5. ~~Rewrite README~~ **done**. Licence decided by the user on 2026-10-15: **CC BY 4.0**
-   (reuse and translation free, with attribution; commercial use allowed). `LICENSE` added
-   (bilingual, pointing to the canonical legal text) and the README licence section filled in.
-6. ~~Cross-references~~ **done** (nothing stale found).
-7. **Push `restructure`** — BLOCKED, see section 5.1. Needs `gh auth login` in the user's terminal.
-8. Decide what to do with `/data/Molecular_Data_Analysis/` (separate GitHub repo?) and ask the user.
-9. ~~Merge `restructure` → `main`~~ **done 2026-10-15** (fast-forward, no conflicts; both branches
-   at `16bda44`). Remaining: push, then invite the peer reviewers.
-10. Optional polish before going public: add `LICENSE`, fill the review-status table as reviews come
-    in, and consider a short CONTRIBUTING.md (the README already holds review instructions).
+1. **Add the `منطق کلی` paragraph to the protocols of 04–11 and 13** — the only part of the
+   teaching pass still open. Pattern: a `> **منطق کلی:** …` line in the intro blockquote saying why
+   the steps exist and pointing at the theory sections (see 02, 14 or 18 for the shape).
+2. **Apply `_tools/rtl_wrap.py` to the topic files.** Only `STYLE_GUIDE.md` is wrapped in
+   `<div dir="rtl">` so far; the 108 topic files are not. Decide whether the whole set gets wrapped
+   (GitHub then renders them right-to-left) and do it in one commit, since the diff is mechanical.
+3. **Commit and push each batch as it is finished** (the teaching pass itself is committed as of
+   this session: theory / troubleshooting / assessment+answers / protocol, plus STYLE_GUIDE and
+   _tools). Push from the user's own terminal if Claude's shell cannot (see 5b).
+4. **Peer review, topic by topic.** Per reviewed file set `status: reviewed`, fill `reviewer` and
+   `last_reviewed`, and update the review-status table in `README.md`.
+5. **Verify the 🔎 numbers** against the manuals used in this lab — highest value per hour. Start
+   with 05 PCR, 08 qPCR, 16 MALDI-TOF.
+6. **Decide what to do with `/data/Molecular_Data_Analysis/`** (separate GitHub repo?) — still local
+   and uncommitted; ask the user.
+7. Optional: decide whether the `restructure` branch can be deleted locally and on the remote.
