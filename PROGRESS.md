@@ -40,15 +40,17 @@ over every file (see section 2), not new content. After that: peer review and �
   troubleshooting rewritten in full; the hint cross-references in topic 15's assessment were
   corrected against the real section numbers of its theory file.
 
-## 3. Files changed (uncommitted)
-- `01_…` to `18_…`: theory, protocol, troubleshooting, assessment and answers files touched by the
-  pass — 86 topic files plus `PROGRESS.md`.
-- Helper scripts live in the session scratchpad, **not** in the repo:
-  `/tmp/claude-1000/-data-Education-Molecular-Methods/5b05b9b0-3beb-443e-a779-786328a08885/scratchpad/`
-  — `tables2prose.py` (troubleshooting tables → numbered prose) and `add_hints.py` (inserts
-  `> راهنمایی:` lines from a JSON file keyed by question number). Copy them into the next session
-  if the same transformation is needed again; the originals of the converted troubleshooting files
-  are kept there as `1[4-8]_ts_orig.md`.
+## 3. State of the tree
+- **Nothing uncommitted, and `main` is pushed** (as of 2026-10-21, head `7f28023`). The teaching
+  pass went up as five commits — theory / troubleshooting / assessment+answers / protocols /
+  STYLE_GUIDE+_tools — plus one merge commit for the GitHub edit (see 5c).
+- `STYLE_GUIDE.md` is the written convention the pass follows, with a checklist a file must pass
+  before it can be marked `reviewed`. It is the first thing to read before editing content.
+- Helper scripts are **in the repo** now, as `_tools/`: `add_hints.py` (inserts `> راهنمایی:` lines
+  from a JSON file keyed by question number), `persian_words.py` (the safe replacements of
+  STYLE_GUIDE §6, with `--report` for the ones needing judgement), `check_internal_links.py`
+  (reports broken relative links; currently 0) and `rtl_wrap.py` (wraps a file in
+  `<div dir="rtl">` — applied to `STYLE_GUIDE.md` only, not yet to the topic files).
 - ⚠️ Heading numbering inside `14_…/01_Theory.md` uses `۲.۳`–`۲.۹` and `۴.الف…` on purpose, so the
   existing section numbers and the references to them stay valid. **Do not renumber.**
 
@@ -79,17 +81,29 @@ No build or runtime errors — this is a documentation repo.
   flagged "verify on your instrument".
 - Retracted earlier suspicion: `E = 10^slope` in the LinRegPCR sections is **correct**.
 
-**(b) Environment quirk, not a repo bug — do not "fix" the user's git config**
-Claude's shell cannot push. Exact error from `gh auth status`:
-```
-X Timeout trying to log in to github.com account raminabiri (keyring)
-```
-and `git push` then hangs with no output. Cause: `~/.gitconfig` registers
-`credential.https://github.com.helper = !/usr/bin/gh auth git-credential` (**per-URL**, which is why
-`git config --get credential.helper` prints nothing — do not read that as "no helper"), gh cannot
-reach the OS keyring in a headless session, so git falls back to *prompting* — and Claude's shell
-has no TTY (`tty` → `not a tty`), so the prompt can never be answered.
-**The user's own terminal pushes normally.** Ask them to run `git push`; reconfigure nothing.
+**(b) Pushing from Claude's shell — it works now (2026-10-21)**
+`git push origin main` from Claude's shell succeeded in this session, so the earlier diagnosis
+("Claude's shell cannot push") is no longer true; nothing in the git config was changed to make it
+work. Run it with `GIT_TERMINAL_PROMPT=0` and a `timeout`, so that if the credential helper ever
+falls back to prompting again the command fails fast instead of hanging with no output (Claude's
+shell has no TTY, `tty` → `not a tty`, so a prompt can never be answered).
+
+Still true, and still not a repo bug: `~/.gitconfig` registers
+`credential.https://github.com.helper = !/usr/bin/gh auth git-credential` **per-URL**, which is why
+`git config --get credential.helper` prints nothing — do not read that as "no helper" and do not
+"fix" the user's git config.
+
+**(c) The remote can be ahead: the user also edits files on GitHub**
+Commit `4fc4d9e` ("Update 01_Theory.md", 2026-10-20) was a wording edit made in the GitHub web
+editor, against the pre-pass version of `02_DNA_Extraction/01_Theory.md`. Always `git fetch` and
+check `HEAD..origin/main` before pushing. When such an edit lands on text the pass has rewritten,
+keep the rewritten file and carry over only the preferences that still apply, naming in the commit
+message what was dropped and why (see `7f28023`).
+
+**Open wording decision:** that edit changed استافیلوکوک → استافیلوکوکوس. It is now applied in
+`02_DNA_Extraction/01_Theory.md` only. Elsewhere (02's protocol, troubleshooting and assessment,
+and topic 16) the word still reads استافیلوکوک, mostly inside lists next to انتروکوک and
+استرپتوکوک — so applying it repo-wide means deciding on those two as well. Ask the user.
 
 ## 6. Next steps (priority order, one session each)
 1. **Add the `منطق کلی` paragraph to the protocols of 04–11 and 13** — the only part of the
@@ -100,7 +114,7 @@ has no TTY (`tty` → `not a tty`), so the prompt can never be answered.
    (GitHub then renders them right-to-left) and do it in one commit, since the diff is mechanical.
 3. **Commit and push each batch as it is finished** (the teaching pass itself is committed as of
    this session: theory / troubleshooting / assessment+answers / protocol, plus STYLE_GUIDE and
-   _tools). Push from the user's own terminal if Claude's shell cannot (see 5b).
+   _tools), and pushed. Fetch first — the remote may be ahead (see 5b and 5c).
 4. **Peer review, topic by topic.** Per reviewed file set `status: reviewed`, fill `reviewer` and
    `last_reviewed`, and update the review-status table in `README.md`.
 5. **Verify the 🔎 numbers** against the manuals used in this lab — highest value per hour. Start
