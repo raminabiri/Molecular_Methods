@@ -82,11 +82,14 @@ No build or runtime errors — this is a documentation repo.
 - Retracted earlier suspicion: `E = 10^slope` in the LinRegPCR sections is **correct**.
 
 **(b) Pushing from Claude's shell — it works now (2026-10-21)**
-`git push origin main` from Claude's shell succeeded in this session, so the earlier diagnosis
+`git push origin main` from Claude's shell succeeds, so the earlier diagnosis
 ("Claude's shell cannot push") is no longer true; nothing in the git config was changed to make it
 work. Run it with `GIT_TERMINAL_PROMPT=0` and a `timeout`, so that if the credential helper ever
 falls back to prompting again the command fails fast instead of hanging with no output (Claude's
-shell has no TTY, `tty` → `not a tty`, so a prompt can never be answered).
+shell has no TTY, `tty` → `not a tty`, so a prompt can never be answered). It is **slow and not always
+reliable**: one of the three pushes in this session hung and was killed by a 90-second `timeout`,
+then the same push went through on the next try. So allow ~150 s, and on a timeout simply retry
+before concluding anything is broken.
 
 Still true, and still not a repo bug: `~/.gitconfig` registers
 `credential.https://github.com.helper = !/usr/bin/gh auth git-credential` **per-URL**, which is why
